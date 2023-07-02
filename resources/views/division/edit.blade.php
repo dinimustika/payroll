@@ -23,11 +23,9 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <!-- column -->
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <!-- title -->
                     <div class="d-md-flex">
                         <div>
                             <h4 class="card-title">Company Divisions</h4>
@@ -76,58 +74,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- title -->
                 </div>
-                <div class="table-responsive">
-                    <table class="table v-middle">
-                        <thead>
-                            <tr class="bg-light">
-                                <th class="border-top-0">Division Name</th>
-                                <th class="border-top-0">Division Lead</th>
-                                <th class="border-top-0">Employees Number</th>
-                                <th class="border-top-0">Overview</th>
-                                <th class="border-top-0">Detail</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($division as $division)
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="m-r-10"><a class="btn btn-circle d-flex btn-info text-white">{{$division->inisial}}</a>
-                                        </div>
-                                        <div class="">
-                                            <h4 class="m-b-0 font-16">{{$division->DivisionName}}</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <label class="label label-danger">{{$division->DivisionLead}}</label>
-                                </td>
-                                <td>
-                                    <h6 class="m-b-0">{{$division->total_emp}}</h6>
-                                </td>
-                                <td>
-                                    <p class="m-b-0">{{$division->Overview}}</p>
-                                </td>
-                                <td>
-                                    <div class="row col-md-12">                       
-                                        <div class="col-md-6">
-                                            <a href="divisions/{{$division->DivisionID}}/edit" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
-                                        </div>
-                                        <form method="POST" action="divisions/{{$division->DivisionID}}/destroy" class="col-md-6">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>                                            
-                                            </div>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div>
+                    
                 </div>
             </div>
         </div>
