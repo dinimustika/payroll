@@ -51,9 +51,10 @@ class DivisionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DivisionModel $divisionModel)
+    public function edit($divisionModel)
     {
-        //
+        $division = DivisionModel::find($divisionModel);
+        return view('division/edit', compact('division'));
     }
 
     /**

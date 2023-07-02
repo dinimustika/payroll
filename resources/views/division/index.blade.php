@@ -111,15 +111,15 @@
                                     <p class="m-b-0">{{$division->Overview}}</p>
                                 </td>
                                 <td>
-                                    <div class="row col-md-12">                       
+                                    <div class="row col-md-12">
                                         <div class="col-md-6">
                                             <a href="divisions/{{$division->DivisionID}}/edit" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
                                         </div>
                                         <form method="POST" action="divisions/{{$division->DivisionID}}/destroy" class="col-md-6">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
+                                            @csrf
+                                            @method('DELETE')
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>                                            
+                                                <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
                                             </div>
                                         </form>
                                     </div>
