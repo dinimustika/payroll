@@ -60,16 +60,25 @@ class DivisionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DivisionModel $divisionModel)
+    public function update(Request $request, $divisionModel)
     {
-        //
+        $division = DivisionModel::find($divisionModel);
+        $division->DivisionName = $request->DivisionName;
+        $division->DivisionLead = $request->DivisionLead;
+        if(!empty($request->Overview)){
+            $division->Overview = $request->Overview;
+        }
+        $division->save();
+        return redirect()->to('/divisions');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DivisionModel $divisionModel)
+    public function destroy($divisionModel)
     {
-        //
+        $division = DivisionModel::find($divisionModel);
+        $division->destroy();
+        return redirect()->to('/divisions');
     }
 }

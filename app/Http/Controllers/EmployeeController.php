@@ -12,7 +12,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee = new EmployeeModel(); 
+        return view('employee/index', compact('employee'));       
     }
 
     /**
