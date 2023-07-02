@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DivisionModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DivisionController extends Controller
 {
@@ -12,7 +13,7 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        $division = DivisionModel::all();
+        $division = DivisionModel::leftJoin('employees','employees.EmployeeID', 'divisions.DivisionLead')->select(DB::raw("divisions.*, CONCAT(LEFT(DivisionName, 1), SUBSTRING(DivisionName, INSTR(DivisionName, ' ') + 1, 1)) AS inisial, (SELECT COUNT(A.EmployeeID) FROM employees A WHERE a.DivisionID = divisions.DivisionID) as total_emp"))->get();
         return view('division/index', compact('division'));
     }
 
@@ -29,7 +30,14 @@ class DivisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $division = new DivisionModel();
+        $division->DivisionName = $request->DivisionName;
+        $division->DivisionLead = $request->DivisionLead;
+        if(!empty($request->Overview)){
+            $division->Overview = $request->Overview;
+        }
+        $division->save();
+        return redirect()->to('/divisions');
     }
 
     /**

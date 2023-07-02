@@ -33,16 +33,48 @@
                             <h4 class="card-title">Company Divisions</h4>
                             <h5 class="card-subtitle">Lists of company divisions</h5>
                         </div>
-                        <!-- <div class="ms-auto">
+                        <div class="ms-auto">
                             <div class="dl">
-                                <select class="form-select shadow-none">
-                                    <option value="0" selected>Monthly</option>
-                                    <option value="1">Daily</option>
-                                    <option value="2">Weekly</option>
-                                    <option value="3">Yearly</option>
-                                </select>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addDivision">
+                                    Add Division
+                                </button>
+                                <div class="modal fade" id="addDivision" tabindex="-1" role="dialog" aria-labelledby="addDivisionLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addDivisionLabel">Add Division Data</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ url('divisions') }}" method="post">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <div class="row col-md-12">
+                                                        <label for="DivisionName" class="col-md-4">Division Name</label>
+                                                        <input type="text" name="DivisionName" id="DivisionName" class="form-control col-md-8">
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="DivisionOverview" class="col-md-4">Division Overview</label>
+                                                        <textarea name="Overview" id="Overview" class="form-control col-md-8" rows="4"></textarea>
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="DivisionLead" class="col-md-4">Division Lead</label>
+                                                        <select name="DivisionLead" id="DivisionLead" class="form-control col-md-8">
+                                                            <option value="">Select Employee</option>
+                                                        </select>
+                                                    </div><br>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                     <!-- title -->
                 </div>
@@ -58,40 +90,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($division as $division)
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="m-r-10"><a class="btn btn-circle d-flex btn-info text-white">EA</a>
+                                        <div class="m-r-10"><a class="btn btn-circle d-flex btn-info text-white">{{$division->inisial}}</a>
                                         </div>
                                         <div class="">
-                                            <h4 class="m-b-0 font-16">Elite Admin</h4>
+                                            <h4 class="m-b-0 font-16">{{$division->DivisionName}}</h4>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <label class="label label-danger">Angular</label>
+                                    <label class="label label-danger">{{$division->DivisionLead}}</label>
                                 </td>
                                 <td>
-                                    <h5 class="m-b-0">$2850.06</h5>
+                                    <h6 class="m-b-0">{{$division->total_emp}}</h6>
+                                </td>
+                                <td>
+                                    <p class="m-b-0">{{$division->Overview}}</p>                                    
+                                </td>
+                                <td>
+                                    <a href="divisions/{{$division->DivisionID}}/edit" class="btn btn-warning">Detail</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="m-r-10"><a class="btn btn-circle d-flex btn-orange text-white">MA</a>
-                                        </div>
-                                        <div class="">
-                                            <h4 class="m-b-0 font-16">Monster Admin</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <label class="label label-info">Vue Js</label>
-                                </td>
-                                <td>
-                                    <h5 class="m-b-0">$2850.06</h5>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
