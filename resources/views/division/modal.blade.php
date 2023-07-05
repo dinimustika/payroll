@@ -15,8 +15,8 @@
                 <label for="DivisionLead" class="col-md-4">Division Lead</label>
                 <select name="DivisionLead" id="DivisionLead" class="form-control col-md-8">
                     <option value="">Select Employee</option>
-                    @foreach ($employee as $employee)
-                    <option value="{{$division->team_lead}}" {{ $employee->Name == $division->team_lead ? 'selected' : '' }}>{{$division->team_lead}}</option>
+                    @foreach ($employees as $employee)
+                    <option value="{{$employee->EmployeeID}}" {{ $employee->Name == $division->team_lead ? 'selected' : '' }}>{{$employee->Name}}</option>
                     @endforeach
                 </select>
             </div><br>

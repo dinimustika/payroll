@@ -54,8 +54,8 @@ class EmployeeController extends Controller
      */
     public function show($employeeModel)
     {
-        $employee = EmployeeModel::where('EmployeeID', $employeeModel)->first();        
-        return view('employee.modal', compact('employee'));
+        // $employee = EmployeeModel::where('EmployeeID', $employeeModel)->first();        
+        // return view('employee.modal', compact('employee'));
     }
 
     /**
@@ -68,9 +68,19 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EmployeeModel $employeeModel)
+    public function update(Request $request, $employeeModel)
     {
-        //
+        $employee = EmployeeModel::find($employeeModel);
+        $employee->Name = $request->Name;
+        $employee->Email = $request->Email;
+        $employee->Address = $request->Address;
+        $employee->Gender = $request->Gender;
+        $employee->DOB = $request->DOB;
+        $employee->DivisionID = $request->DivisionID;
+        $employee->EmployeeLevel = $request->EmployeeLevel;
+        $employee->BasicSalary = $request->BasicSalary;
+        $employee->save();
+        return redirect()->to('/employees');
     }
 
     /**

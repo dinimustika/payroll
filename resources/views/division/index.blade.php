@@ -102,7 +102,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <label class="label label-success">{{$division->team_lead}}</label>
+                                    <label class="label label-success"><h6>{{$division->team_lead}}</h6></label>
                                 </td>
                                 <td>
                                     <h6 class="m-b-0">{{$division->total_emp}}</h6>
@@ -113,7 +113,7 @@
                                 <td>
                                     <div class="row col-md-12">
                                         <div class="col-md-6">
-                                            <a href="divisions/{{$division->DivisionID}}" data-toggle="modal" data-target="#divisionModal{{$division->DivisionID}}" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#divisionModal{{$division->DivisionID}}" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
                                             <div class="modal fade" id="divisionModal{{$division->DivisionID}}" tabindex="-1" role="dialog" aria-labelledby="divisionModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">

@@ -1,5 +1,7 @@
 <div class="modal-body">
-    <form action="" method="post">
+    <form action="employees/{{$employee->EmployeeID}}" method="post">
+        @csrf
+        @method('PUT')
         <div class="row">
             <label for="Name" class="col-md-3">Name</label>
             <input type="text" name="Name" id="Name" class="form-control col-md-9" value="{{ $employee->Name }}">
