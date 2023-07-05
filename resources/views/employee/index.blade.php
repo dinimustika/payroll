@@ -59,8 +59,8 @@
                                                         <input type="password" name="Password" id="Password" class="form-control col-md-8">
                                                     </div><br>
                                                     <div class="row col-md-12">
-                                                        <label for="Status" class="col-md-4">User Status</label>
-                                                        <select name="Status" id="Status" class="form-control col-md-8">
+                                                        <label for="UserStatus" class="col-md-4">User Status</label>
+                                                        <select name="UserStatus" id="UserStatus" class="form-control col-md-8">
                                                             <option value="">Select Status</option>
                                                             <option value="Active" selected>Active</option>
                                                             <option value="Inactive">Inactive</option>
@@ -111,6 +111,15 @@
                                                         <input type="number" name="BasicSalary" id="BasicSalary" class="form-control col-md-8">
                                                     </div><br>
                                                     <div class="row col-md-12">
+                                                        <label for="DivisionID" class="col-md-4">Employee Division</label>
+                                                        <select name="DivisionID" id="DivisionID" class="form-control col-md-8">
+                                                            <option value="">Select Division</option>
+                                                            @foreach ($division as $division)
+                                                            <option value="{{$division->DivisionID}}">{{$division->DivisionName}}</option>                                                            
+                                                            @endforeach
+                                                        </select>
+                                                    </div><br>
+                                                    <div class="row col-md-12">
                                                         <label for="Gender" class="col-md-4">Employee Gender</label>
                                                         <select name="Gender" id="Gender" class="form-control col-md-8">
                                                             <option value="">Select Gender</option>
@@ -122,13 +131,14 @@
                                                         <label for="UserID" class="col-md-4">UserID</label>
                                                         <select name="UserID" id="UserID" class="form-control col-md-8">
                                                             <option value="">Select UserID</option>
-                                                            <option value="Female">Female</option>
-                                                            <option value="Male">Male</option>
+                                                            @foreach ($user as $user)
+                                                            <option value="{{$user->UserID}}">{{$user->Username}}</option>                                                            
+                                                            @endforeach
                                                         </select>
                                                     </div><br>
                                                     <div class="row col-md-12">
-                                                        <label for="Level" class="col-md-4">Employee Level</label>
-                                                        <select name="Level" id="Level" class="form-control col-md-8">
+                                                        <label for="EmployeeLevel" class="col-md-4">Employee Level</label>
+                                                        <select name="EmployeeLevel" id="EmployeeLevel" class="form-control col-md-8">
                                                             <option value="">Select Level</option>
                                                             <option value="1">Staff Junior</option>
                                                             <option value="2">Staff Senior</option>
@@ -163,7 +173,7 @@
                         <tbody>
                             @foreach ($employee as $employee)
                             <tr>
-                                
+                                <td>{{ $employee->Name }}</td>
                             </tr>
                             @endforeach
                         </tbody>

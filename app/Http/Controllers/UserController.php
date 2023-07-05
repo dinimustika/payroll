@@ -34,7 +34,7 @@ class UserController extends Controller
         $user->Password = Hash::make($request->Password);
         $user->UserStatus = $request->UserStatus;
         $user->save();
-        return redirect()->to('/users');
+        return redirect()->to('/employees');
     }
 
     /**

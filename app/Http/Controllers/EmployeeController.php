@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DivisionModel;
 use App\Models\EmployeeModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -12,8 +15,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = new EmployeeModel(); 
-        return view('employee/index', compact('employee'));       
+        $employee = EmployeeModel::all(); 
+        $division = DivisionModel::all();
+        $user = UserModel::leftJoin('employees','employees.UserID','users.UserID')->select('users.*')->whereNull('employees.UserID')->get();
+        return view('employee/index', compact('employee', 'division','user'));       
     }
 
     /**
@@ -29,7 +34,18 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employee = new EmployeeModel();
+        $employee->Name = $request->Name;
+        $employee->Email = $request->Email;
+        $employee->Address = $request->Address;
+        $employee->Gender = $request->Gender;
+        $employee->DOB = $request->DOB;
+        $employee->DivisionID = $request->DivisionID;
+        $employee->EmployeeLevel = $request->EmployeeLevel;
+        $employee->UserID = $request->UserID;
+        $employee->BasicSalary = $request->BasicSalary;
+        $employee->save();
+        return redirect()->to('/employees');
     }
 
     /**
