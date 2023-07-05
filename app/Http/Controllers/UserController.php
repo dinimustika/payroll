@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -28,7 +29,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new UserModel();
+        $user->Username = $request->Username;
+        $user->Password = Hash::make($request->Password);
+        $user->UserStatus = $request->UserStatus;
+        $user->save();
+        return redirect()->to('/users');
     }
 
     /**
