@@ -31,14 +31,14 @@
                         </div>
                         <div class="ms-auto">
                             <div class="dl">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">
-                                    Add Users
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPayroll">
+                                    Add Payrolls
                                 </button>
-                                <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
+                                <div class="modal fade" id="addPayroll" tabindex="-1" role="dialog" aria-labelledby="addPayrollLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="addUserLabel">Add User Data</h5>
+                                                <h5 class="modal-title" id="addPayrollLabel">Add Payroll Data</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -93,7 +93,7 @@
                     </div>
                     <!-- title -->
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive container">
                     <table class="table v-middle">
                         <thead>
                             <tr class="bg-light">
@@ -152,7 +152,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#InfoID').change(function() {
+        $('#EmployeeID').change(function() {
             var selectedOption = $(this).val();
             $.ajax({
                 url: '/getDynamicValue',

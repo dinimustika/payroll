@@ -78,7 +78,7 @@
                     </div>
                     <!-- title -->
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive container">
                     <table class="table v-middle">
                         <thead>
                             <tr class="bg-light">
