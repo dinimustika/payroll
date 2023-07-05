@@ -102,7 +102,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <label class="label label-danger">{{$division->DivisionLead}}</label>
+                                    <label class="label label-success">{{$division->team_lead}}</label>                                    
                                 </td>
                                 <td>
                                     <h6 class="m-b-0">{{$division->total_emp}}</h6>

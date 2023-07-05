@@ -180,12 +180,12 @@
                                 <td>
                                     <div class="row col-md-12">
                                         <div class="col-md-6">
-                                            <a href="{{ route('employees.show',$employee->EmployeeID) }}" data-toggle="modal" data-target="#employeeModal" class="btn btn-warning"><i class="mdi mdi-pencil"></i>                                                </a>
-                                            <div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
+                                            <a href="{{ route('employees.show', $employee->EmployeeID) }}" data-toggle="modal" data-target="#employeeModal{{$employee->EmployeeID}}" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
+                                            <div class="modal fade" id="employeeModal{{$employee->EmployeeID}}" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="employeeModalLabel">Product Details</h5>
+                                                            <h5 class="modal-title" id="employeeModalLabel">Employee Details</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>

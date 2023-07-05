@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DivisionModel;
+use App\Models\EmployeeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +14,7 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        $division = DivisionModel::leftJoin('employees','employees.EmployeeID', 'divisions.DivisionLead')->select(DB::raw("divisions.*, CONCAT(LEFT(DivisionName, 1), SUBSTRING(DivisionName, INSTR(DivisionName, ' ') + 1, 1)) AS inisial, (SELECT COUNT(A.EmployeeID) FROM employees A WHERE a.DivisionID = divisions.DivisionID) as total_emp"))->get();
+        $division = DivisionModel::leftJoin('employees','employees.EmployeeID', 'divisions.DivisionLead')->select(DB::raw("divisions.*, CONCAT(LEFT(DivisionName, 1), SUBSTRING(DivisionName, INSTR(DivisionName, ' ') + 1, 1)) AS inisial, (SELECT COUNT(A.EmployeeID) FROM employees A WHERE a.DivisionID = divisions.DivisionID) as total_emp, (select B.Name FROM employees B WHERE B.DivisionID = divisions.DivisionID AND B.EmployeeLevel=3) as team_lead"))->get();
         return view('division/index', compact('division'));
     }
 
