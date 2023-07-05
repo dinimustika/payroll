@@ -35,14 +35,14 @@
                         </div>
                         <div class="ms-auto">
                             <div class="dl">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addDivision">
-                                    Add Employee
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">
+                                    Add Users
                                 </button>
-                                <div class="modal fade" id="addDivision" tabindex="-1" role="dialog" aria-labelledby="addDivisionLabel" aria-hidden="true">
+                                <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="addDivisionLabel">Add Employee Data</h5>
+                                                <h5 class="modal-title" id="addUserLabel">Add User Data</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -51,17 +51,88 @@
                                                 @csrf
                                                 <div class="modal-body">
                                                     <div class="row col-md-12">
-                                                        <label for="DivisionName" class="col-md-4">Employee Name</label>
-                                                        <input type="text" name="DivisionName" id="DivisionName" class="form-control col-md-8">
+                                                        <label for="Username" class="col-md-4">Username</label>
+                                                        <input type="text" name="Username" id="Username" class="form-control col-md-8">
                                                     </div><br>
                                                     <div class="row col-md-12">
-                                                        <label for="DivisionOverview" class="col-md-4">Employee Overview</label>
-                                                        <textarea name="Overview" id="Overview" class="form-control col-md-8" rows="4"></textarea>
+                                                        <label for="Password" class="col-md-4">Password</label>
+                                                        <input type="password" name="Password" id="Password" class="form-control col-md-8">
                                                     </div><br>
                                                     <div class="row col-md-12">
-                                                        <label for="DivisionLead" class="col-md-4">Employee Lead</label>
-                                                        <select name="DivisionLead" id="DivisionLead" class="form-control col-md-8">
-                                                            <option value="">Select Employee</option>
+                                                        <label for="Status" class="col-md-4">User Status</label>
+                                                        <select name="Status" id="Status" class="form-control col-md-8">
+                                                            <option value="">Select Status</option>
+                                                            <option value="Active" selected>Active</option>
+                                                            <option value="Inactive">Inactive</option>
+                                                        </select>
+                                                    </div><br>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addEmployee">
+                                    Add Employee
+                                </button>
+                                <div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="addEmployeeLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addEmployeeLabel">Add Employee Data</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ url('employees') }}" method="post">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <div class="row col-md-12">
+                                                        <label for="Name" class="col-md-4">Employee Name</label>
+                                                        <input type="text" name="Name" id="Name" class="form-control col-md-8">
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="Email" class="col-md-4">Employee Email</label>
+                                                        <input type="email" name="Email" id="Email" class="form-control col-md-8">
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="Address" class="col-md-4">Employee Address</label>
+                                                        <input type="text" name="Address" id="Address" class="form-control col-md-8">
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="DOB" class="col-md-4">Employee DOB</label>
+                                                        <input type="date" name="DOB" id="DOB" class="form-control col-md-8">
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="BasicSalary" class="col-md-4">Employee Basic Salary</label>
+                                                        <input type="number" name="BasicSalary" id="BasicSalary" class="form-control col-md-8">
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="Gender" class="col-md-4">Employee Gender</label>
+                                                        <select name="Gender" id="Gender" class="form-control col-md-8">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Male">Male</option>
+                                                        </select>
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="UserID" class="col-md-4">UserID</label>
+                                                        <select name="UserID" id="UserID" class="form-control col-md-8">
+                                                            <option value="">Select UserID</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Male">Male</option>
+                                                        </select>
+                                                    </div><br>
+                                                    <div class="row col-md-12">
+                                                        <label for="Level" class="col-md-4">Employee Level</label>
+                                                        <select name="Level" id="Level" class="form-control col-md-8">
+                                                            <option value="">Select Level</option>
+                                                            <option value="1">Staff Junior</option>
+                                                            <option value="2">Staff Senior</option>
+                                                            <option value="3">Division Lead</option>
                                                         </select>
                                                     </div><br>
                                                 </div>
