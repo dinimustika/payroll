@@ -164,9 +164,9 @@
                         <thead>
                             <tr class="bg-light">
                                 <th class="border-top-0">Employee Name</th>
-                                <th class="border-top-0">Employee Lead</th>
-                                <th class="border-top-0">Employees Number</th>
-                                <th class="border-top-0">Overview</th>
+                                <th class="border-top-0">Employee Email</th>
+                                <th class="border-top-0">Employees Address</th>
+                                <th class="border-top-0">Employees Gender</th>
                                 <th class="border-top-0">Detail</th>
                             </tr>
                         </thead>
@@ -174,6 +174,23 @@
                             @foreach ($employee as $employee)
                             <tr>
                                 <td>{{ $employee->Name }}</td>
+                                <td>{{ $employee->Email }}</td>
+                                <td>{{ $employee->Address }}</td>
+                                <td>{{ $employee->Gender }}</td>
+                                <td>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-6">
+                                            <a href="employees/{{$employee->EmployeeID}}/edit" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
+                                        </div>
+                                        <form method="POST" action="employees/{{$employee->EmployeeID}}/destroy" class="col-md-6">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
