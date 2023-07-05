@@ -102,7 +102,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <label class="label label-success">{{$division->team_lead}}</label>                                    
+                                    <label class="label label-success">{{$division->team_lead}}</label>
                                 </td>
                                 <td>
                                     <h6 class="m-b-0">{{$division->total_emp}}</h6>
@@ -113,7 +113,22 @@
                                 <td>
                                     <div class="row col-md-12">
                                         <div class="col-md-6">
-                                            <a href="divisions/{{$division->DivisionID}}/edit" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
+                                            <a href="divisions/{{$division->DivisionID}}" data-toggle="modal" data-target="#divisionModal{{$division->DivisionID}}" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
+                                            <div class="modal fade" id="divisionModal{{$division->DivisionID}}" tabindex="-1" role="dialog" aria-labelledby="divisionModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="divisionModalLabel">Employee Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @include('division.modal')
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <form method="POST" action="divisions/{{$division->DivisionID}}/destroy" class="col-md-6">
                                             @csrf
