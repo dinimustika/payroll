@@ -15,10 +15,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = EmployeeModel::all(); 
+        $employee = EmployeeModel::all();
         $division = DivisionModel::all();
-        $user = UserModel::leftJoin('employees','employees.UserID','users.UserID')->select('users.*')->whereNull('employees.UserID')->get();
-        return view('employee/index', compact('employee', 'division','user'));       
+        $divisions = DB::table('divisions')->get();
+        $user = UserModel::leftJoin('employees', 'employees.UserID', 'users.UserID')->select('users.*')->whereNull('employees.UserID')->get();
+        return view('employee/index', compact('employee', 'division', 'user', 'divisions'));
     }
 
     /**
@@ -51,9 +52,10 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EmployeeModel $employeeModel)
+    public function show($employeeModel)
     {
-        //
+        $employee = EmployeeModel::where('EmployeeID', $employeeModel)->first();        
+        return view('employee.modal', compact('employee'));
     }
 
     /**

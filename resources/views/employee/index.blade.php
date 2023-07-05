@@ -115,7 +115,7 @@
                                                         <select name="DivisionID" id="DivisionID" class="form-control col-md-8">
                                                             <option value="">Select Division</option>
                                                             @foreach ($division as $division)
-                                                            <option value="{{$division->DivisionID}}">{{$division->DivisionName}}</option>                                                            
+                                                            <option value="{{$division->DivisionID}}">{{$division->DivisionName}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div><br>
@@ -132,7 +132,7 @@
                                                         <select name="UserID" id="UserID" class="form-control col-md-8">
                                                             <option value="">Select UserID</option>
                                                             @foreach ($user as $user)
-                                                            <option value="{{$user->UserID}}">{{$user->Username}}</option>                                                            
+                                                            <option value="{{$user->UserID}}">{{$user->Username}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div><br>
@@ -180,7 +180,22 @@
                                 <td>
                                     <div class="row col-md-12">
                                         <div class="col-md-6">
-                                            <a href="employees/{{$employee->EmployeeID}}/edit" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
+                                            <a href="{{ route('employees.show',$employee->EmployeeID) }}" data-toggle="modal" data-target="#employeeModal" class="btn btn-warning"><i class="mdi mdi-pencil"></i>                                                </a>
+                                            <div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="employeeModalLabel">Product Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @include('employee.modal')
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <form method="POST" action="employees/{{$employee->EmployeeID}}/destroy" class="col-md-6">
                                             @csrf
