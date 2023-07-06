@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AttendanceModel;
+use App\Models\EmployeeModel;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -12,7 +13,10 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+        $attendance = AttendanceModel::join('employees','employees.EmployeeID','attendance.EmployeeID')->get();
+        $employee = EmployeeModel::all();
+        $employees = EmployeeModel::all();
+        return view('attendance.index', compact('attendance','employee','employees'));
     }
 
     /**
@@ -28,7 +32,13 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attendance = new AttendanceModel();        
+        $attendance->EmployeeID = $request->EmployeeID;
+        $attendance->Date = $request->Date;
+        $attendance->CheckIn = $request->Checkin;
+        $attendance->CheckOut = $request->Checkout;
+        $attendance->save();
+        return redirect()->to('/attendances');
     }
 
     /**
@@ -42,17 +52,23 @@ class AttendanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AttendanceModel $attendanceModel)
+    public function edit($attendanceModel)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AttendanceModel $attendanceModel)
+    public function update(Request $request, $attendanceModel)
     {
-        //
+        $attendance = AttendanceModel::find($attendanceModel);
+        $attendance->EmployeeID = $request->EmployeeID;
+        $attendance->Date = $request->Date;
+        $attendance->CheckIn = $request->Checkin;
+        $attendance->CheckOut = $request->Checkout;
+        $attendance->save();
+        return redirect()->to('/attendances');
     }
 
     /**
