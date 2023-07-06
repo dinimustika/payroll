@@ -70,9 +70,15 @@ class PayrollController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PayrollModel $payrollModel)
+    public function update(Request $request, $payrollModel)
     {
-        //
+        $payroll = PayrollModel::find($payrollModel);
+        $payroll->Date = $request->Date;
+        $payroll->OvertimePay = $request->OvertimePay;
+        $payroll->Deduction = $request->Deduction;
+        $payroll->Bonus = $request->Bonus;
+        $payroll->save();
+        return redirect()->to('/payrolls');
     }
 
     /**

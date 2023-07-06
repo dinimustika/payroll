@@ -99,8 +99,8 @@
                             <tr class="bg-light">
                                 <th class="border-top-0">Payroll Name</th>
                                 <th class="border-top-0">Basic Salary</th>
-                                <th class="border-top-0">Overtime Pay</th>
-                                <th class="border-top-0">Deduction</th>
+                                <th class="border-top-0">Total Salary</th>
+                                <th class="border-top-0">Date</th>
                                 <th class="border-top-0">Detail</th>
                             </tr>
                         </thead>
@@ -109,8 +109,8 @@
                             <tr>
                                 <td>{{ $payroll->Name }}</td>
                                 <td>{{ $payroll->BasicSalary }}</td>
-                                <td>{{ $payroll->OvertimePay }}</td>
-                                <td>{{ $payroll->Deduction }}</td>
+                                <td>{{ $payroll->OvertimePay + $payroll->BasicSalary + $payroll->Bonus - $payroll->Deduction }}</td>
+                                <td>{{ $payroll->Date }}</td>
                                 <td>
                                     <div class="row col-md-12">
                                         <div class="col-md-6">

@@ -62,6 +62,9 @@
                                                         <label for="DivisionLead" class="col-md-4">Division Lead</label>
                                                         <select name="DivisionLead" id="DivisionLead" class="form-control col-md-8">
                                                             <option value="">Select Employee</option>
+                                                            @foreach($employee as $employee)
+                                                            <option value="{{$employee->EmployeeID}}">{{$employee->Name}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div><br>
                                                 </div>

@@ -103,7 +103,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/divisions') }}" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Divisions</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/employees') }}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Employees</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/payrolls') }}" aria-expanded="false"><i class="mdi mdi-credit-card"></i><span class="hide-menu">Payroll</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="starter-kit.html" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Attendance</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/attendances') }}" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Attendance</span></a></li>
                         <!-- <li class="text-center p-40 upgrade-btn">
                             <a href="https://www.wrappixel.com/templates/xtremeadmin/" class="btn d-block w-100 btn-danger text-white" target="_blank">Upgrade to Pro</a>
                         </li> -->
