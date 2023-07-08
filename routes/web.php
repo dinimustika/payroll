@@ -15,3 +15,5 @@ Route::resource('/users', UserController::class);
 Route::resource('/payrolls', PayrollController::class);
 Route::resource('/attendances', AttendanceController::class);
 Route::get('/getDynamicValue', [PayrollController::class, 'getDynamicValue']);
+Route::get('/profile', [HomeController::class, 'profile']);
+Route::get('/login', [HomeController::class, 'login']);
