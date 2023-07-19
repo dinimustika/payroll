@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Not Found</title>
+    <title>Login Page</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/xtreme-admin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
@@ -24,21 +24,25 @@
             </div>
         </div><br>
         <div class="col d-flex justify-content-center container">
-            <div class="card col-md-5">
-                <form action="" method="post"><br>
-                    <div class="row col-md-12">
-                        <label for="Username" class="col-md-4">Username</label>
-                        <input type="text" name="Username" id="Username" class="form-control col-md-8">
-                    </div><br>
-                    <div class="row col-md-12">
-                        <label for="Password" class="col-md-4">Password</label>
-                        <input type="password" name="Password" id="Password" class="form-control col-md-8">
-                    </div><br>
-                    <div class="col d-flex justify-content-center modal-footer">
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                        <button type="reset" class="btn btn-secondary">Clear</button>
-                    </div>
-                </form>
+            <div class="card col-md-6 bg-light">
+                <div class="container">
+                    <form action="/auth_login" method="post"><br>
+                        @csrf
+                        <div class="row col-md-12">
+                            <label for="Username" class="col-md-4">Username</label>
+                            <input type="text" name="Username" id="Username" class="form-control col-md-8">
+                        </div><br>
+                        <div class="row col-md-12">
+                            <label for="Password" class="col-md-4">Password</label>
+                            <input type="password" name="Password" id="Password" class="form-control col-md-8">
+                        </div><br>
+                        <div class="col d-flex justify-content-center modal-footer">
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="reset" class="btn btn-secondary">Clear</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>

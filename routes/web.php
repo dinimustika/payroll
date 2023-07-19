@@ -17,3 +17,4 @@ Route::resource('/attendances', AttendanceController::class);
 Route::get('/getDynamicValue', [PayrollController::class, 'getDynamicValue']);
 Route::get('/profile', [HomeController::class, 'profile']);
 Route::get('/login', [HomeController::class, 'login']);
+Route::post('/auth_login', [HomeController::class, 'auth_login']);
