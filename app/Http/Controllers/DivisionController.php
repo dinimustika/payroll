@@ -16,7 +16,7 @@ class DivisionController extends Controller
     {
         $employee = EmployeeModel::where('EmployeeLevel', 3)->get();
         $employees = DB::table('Employees')->get();
-        $division = DivisionModel::leftJoin('employees','employees.EmployeeID', 'divisions.DivisionLead')->select(DB::raw("divisions.*, CONCAT(LEFT(DivisionName, 1), SUBSTRING(DivisionName, INSTR(DivisionName, ' ') + 1, 1)) AS inisial, (SELECT COUNT(A.EmployeeID) FROM employees A WHERE a.DivisionID = divisions.DivisionID) as total_emp, (select B.Name FROM employees B WHERE B.DivisionID = divisions.DivisionID AND B.EmployeeLevel=3) as team_lead"))->get();
+        $division = DivisionModel::leftJoin('employees','employees.DivisionID', 'divisions.DivisionID')->select(DB::raw("distinct divisions.*, CONCAT(LEFT(DivisionName, 1), SUBSTRING(DivisionName, INSTR(DivisionName, ' ') + 1, 1)) AS inisial, (SELECT COUNT(A.EmployeeID) FROM employees A WHERE a.DivisionID = divisions.DivisionID) as total_emp, (select B.Name FROM employees B WHERE B.DivisionID = divisions.DivisionID AND B.EmployeeLevel=3) as team_lead"))->get();
         return view('division/index', compact('division','employee','employees'));
     }
 
@@ -35,7 +35,6 @@ class DivisionController extends Controller
     {
         $division = new DivisionModel();
         $division->DivisionName = $request->DivisionName;
-        $division->DivisionLead = $request->DivisionLead;
         if(!empty($request->Overview)){
             $division->Overview = $request->Overview;
         }
@@ -69,7 +68,6 @@ class DivisionController extends Controller
     {
         $division = DivisionModel::find($divisionModel);
         $division->DivisionName = $request->DivisionName;
-        $division->DivisionLead = $request->DivisionLead;
         if(!empty($request->Overview)){
             $division->Overview = $request->Overview;
         }

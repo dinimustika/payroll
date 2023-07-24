@@ -6,6 +6,7 @@ use App\Models\EmployeeModel;
 use App\Models\PayrollModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Termwind\Components\Raw;
 
 class PayrollController extends Controller
 {
@@ -23,7 +24,8 @@ class PayrollController extends Controller
     public function getDynamicValue(Request $request)
     {
         $selectedOption = $request->input('option');
-        $dynamicValue = DB::table('employees')->select('BasicSalary')->where('EmployeeID', $selectedOption)->first();        
+        $dynamicValue = DB::table('employees')->select('BasicSalary')->where('EmployeeID', $selectedOption)->first();
+        $deduction_attendance = DB::table('attendance')->select(DB::raw("EmployeeID, SUM(CASE WHEN CheckIn > CAST('08:00' as time) THEN 1 ELSE 0 END) AS telat, SUM(CASE WHEN CheckOut < CAST('17:00' as time) THEN 1 ELSE 0 END) AS awal FROM attendance GROUP BY EmployeeID, MONTH(CheckIn), YEAR(CheckIn)"))->where('EmployeeID', $selectedOption)->get();        
         return response()->json($dynamicValue);
     }
 
@@ -56,7 +58,10 @@ class PayrollController extends Controller
      */
     public function show($payrollModel)
     {
-        
+        $employee = EmployeeModel::where('UserID', $payrollModel)->first();
+        $payroll = PayrollModel::join('employees', 'employees.EmployeeID', 'salary_history.EmployeeID')->select(DB::raw('salary_history.*, employees.Name'))->where('employees.EmployeeID', $payrollModel)->get();
+        $employees = EmployeeModel::all();
+        return view('payroll.own', compact('payroll', 'employee','employees'));
     }
 
     /**
@@ -71,7 +76,7 @@ class PayrollController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $payrollModel)
-    {
+    {        
         $payroll = PayrollModel::find($payrollModel);
         $payroll->Date = $request->Date;
         $payroll->OvertimePay = $request->OvertimePay;

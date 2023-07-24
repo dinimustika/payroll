@@ -8,5 +8,5 @@ class DivisionModel extends Model
 {
     protected $table = 'divisions';
     protected $primaryKey = 'DivisionID';
-    protected $fillable = ['DivisionName','DivisionLead','Overview'];
+    protected $fillable = ['DivisionName','Overview'];
 }
