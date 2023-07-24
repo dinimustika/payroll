@@ -37,7 +37,7 @@
                             <input type="password" name="Password" id="Password" class="form-control col-md-8">
                         </div><br>
                         <div class="col d-flex justify-content-center modal-footer">
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                             <button type="reset" class="btn btn-secondary">Clear</button>
                         </div>
                     </form>

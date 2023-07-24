@@ -22,17 +22,17 @@
     </div>
 </div>
 <div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
-    <!-- Row -->
     <div class="row">
         <!-- Column -->
         <div class="col-lg-4 col-xlg-3 col-md-5">
             <div class="card">
                 <div class="card-body">
                     <center class="m-t-30"> <img src="../../assets/images/users/5.jpg" class="rounded-circle" width="150" />
-                        <h4 class="card-title m-t-10">Hanna Gover</h4>
+                        @if(!empty($user->Name))
+                        <h4 class="card-title m-t-10">{{ $user->Name }}</h4>
+                        @else
+                        <h4 class="card-title m-t-10">John Doe</h4>
+                        @endif
                         <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
                         <div class="row text-center justify-content-md-center">
                             <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i>
@@ -61,8 +61,6 @@
                 </div>
             </div>
         </div>
-        <!-- Column -->
-        <!-- Column -->
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <div class="card-body">
@@ -70,43 +68,83 @@
                         <div class="form-group">
                             <label class="col-md-12">Full Name</label>
                             <div class="col-md-12">
-                                <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line">
+                                @if(!empty($user->Name))
+                                <input type="text" name='Name' value="{{ $user->Name }}" class="form-control form-control-line">
+                                @else
+                                <input type="text" name='Name' placeholder="Johnathan Doe" class="form-control form-control-line">
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="example-email" class="col-md-12">Email</label>
                             <div class="col-md-12">
-                                <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
+                                @if(!empty($user->UserEmail))
+                                <input type="email" name="UserEmail" value="{{ $user->UserEmail }}" class="form-control form-control-line">
+                                @else
+                                <input type="email" name="UserEmail" placeholder="johnathan@admin.com" class="form-control form-control-line">
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-12">Password</label>
                             <div class="col-md-12">
-                                <input type="password" value="password" class="form-control form-control-line">
+                                <input type="password" name="Password" class="form-control form-control-line">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-12">Phone No</label>
+                            <label class="col-md-12">Address</label>
                             <div class="col-md-12">
-                                <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
+                                @if(!empty($user->Address))
+                                <input type="text" name="Address" value="{{ $user->Address }}" class="form-control form-control-line">
+                                @else
+                                <input type="text" name="Address" placeholder="Jl. Gagak Bunga" class="form-control form-control-line">
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-12">Message</label>
+                            <label class="col-md-12">DOB</label>
                             <div class="col-md-12">
-                                <textarea rows="5" class="form-control form-control-line"></textarea>
+                                @if(!empty($user->DOB))
+                                <input type="date" name="DOB" value="{{ $user->DOB }}" class="form-control form-control-line">
+                                @else
+                                <input type="date" name="DOB" class="form-control form-control-line">
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-12">Select Country</label>
-                            <div class="col-sm-12">
-                                <select class="form-select shadow-none form-control-line">
-                                    <option>London</option>
-                                    <option>India</option>
-                                    <option>Usa</option>
-                                    <option>Canada</option>
-                                    <option>Thailand</option>
+                            <label class="col-md-12">Gender</label>
+                            <div class="col-md-12">
+                                <select name="Gender" id="Gender" class="form-control form-control-line">
+                                    <option value="Female" {{ $user->Gender == "Female" ? 'selected' : '' }}>Female</option>
+                                    <option value="Male" {{ $user->Gender == "Male" ? 'selected' : '' }}>Male</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">DivisionID</label>
+                            <div class="col-md-12">
+                                <select name="DivisionID" id="DivisionID" class="form-control form-control-line">
+                                    @foreach ($division as $division)
+                                    <option value="{{$division->DivisionID}}" {{ $division->DivisionID == $user->DivisionID ? 'selected' : '' }}>{{$division->DivisionName}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">EmployeeLevel</label>
+                            <div class="col-md-12">
+                                <select name="EmployeeLevel" id="EmployeeLevel" class="form-control form-control-line">
+                                    <option value="">Select Level</option>
+                                    <option value="1" {{ $user->EmployeeLevel == "1" ? 'selected' : '' }}>Staff Junior</option>
+                                    <option value="2" {{ $user->EmployeeLevel == "2" ? 'selected' : '' }}>Staff Senior</option>
+                                    <option value="3" {{ $user->EmployeeLevel == "3" ? 'selected' : '' }}>Division Lead</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Employee Basic Salary</label>
+                            <div class="col-md-12">
+                                <input type="number" name="BasicSalary" id="BasicSalary" class="form-control form-control-line">
                             </div>
                         </div>
                         <div class="form-group">

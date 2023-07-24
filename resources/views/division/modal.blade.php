@@ -13,12 +13,13 @@
             </div><br>
             <div class="row col-md-12">
                 <label for="DivisionLead" class="col-md-4">Division Lead</label>
-                <select name="DivisionLead" id="DivisionLead" class="form-control col-md-8">
+                <input type="text" value="{{ $division->team_lead }}" name="DivisionLead" id="DivisionLead" class="form-control col-md-8">
+                <!-- <select name="DivisionLead" id="DivisionLead" class="form-control col-md-8">
                     <option value="">Select Employee</option>
                     @foreach ($employees as $employee)
                     <option value="{{$employee->EmployeeID}}" {{ $employee->Name == $division->team_lead ? 'selected' : '' }}>{{$employee->Name}}</option>
                     @endforeach
-                </select>
+                </select> -->
             </div><br>
         </div>
         <div class="modal-footer">

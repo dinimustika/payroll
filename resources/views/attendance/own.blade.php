@@ -21,6 +21,7 @@
         </div>
     </div>
 </div>
+@if(!empty($employee))
 <div class="container-fluid">
     <div class="row">
         <!-- column -->
@@ -51,11 +52,8 @@
                                                 <div class="modal-body">
                                                     <div class="row col-md-12">
                                                         <label for="EmployeeID" class="col-md-4">Employee ID</label>
-                                                        <select name="EmployeeID" id="EmployeeID" class="form-control col-md-8">
-                                                            <option value="">Select Employee</option>
-                                                            @foreach($employees as $employee)
+                                                        <select name="EmployeeID" id="EmployeeID" class="form-control col-md-8">                                                            
                                                             <option value="{{ $employee->EmployeeID }}">{{$employee->Name}}</option>
-                                                            @endforeach
                                                         </select>
                                                     </div><br>
                                                     <div class="row col-md-12">
@@ -113,7 +111,7 @@
                                 <td>
                                     <div class="row col-md-12">
                                         <div class="col-md-6">
-                                            <a href="#" data-toggle="modal" data-target="#attendanceModal{{$attendance->AttendaceID}}" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#attendanceModal{{$attendance->AttendaceID}}" class="btn btn-warning"><i class="mdi mdi-magnify"></i></a>
                                             <div class="modal fade" id="attendanceModal{{$attendance->AttendaceID}}" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -130,13 +128,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form method="POST" action="attendances/{{$attendance->AttendaceID}}/destroy" class="col-md-6">
-                                            @csrf
-                                            @method('DELETE')
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
-                                            </div>
-                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -148,4 +139,9 @@
         </div>
     </div>
 </div>
+@else
+<div class="container-fluid">
+    <h5>No Data</h5>
+</div>
+@endif
 @stop

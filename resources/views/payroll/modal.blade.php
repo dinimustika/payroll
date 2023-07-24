@@ -33,7 +33,9 @@
         </div><br>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            @if(session()->get('UserLevel')=="Admin")
             <button type="submit" class="btn btn-primary">Save changes</button>
+            @endif            
         </div>
     </form>
 </div>
